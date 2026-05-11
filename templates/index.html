@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Status Dashboard</title>
+</head>
+
+<body>
+    <h1>Status Dashboard</h1>
+    <p>A small internal service that reports its current status.</p>
+
+    <button id="check">Check status</button>
+    <pre id="out"></pre>
+
+    <script>
+        document.getElementById('check').addEventListener('click', async () => {
+            const out = document.getElementById('out');
+            out.textContent = 'Loading...';
+            const res = await fetch('/api/v1/status');
+            const data = await res.json();
+            out.textContent = JSON.stringify(data, null, 2);
+        });
+    </script>
+</body>
+
+</html>
